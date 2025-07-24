@@ -270,10 +270,16 @@ internal_gpio_input_pullup_pin_number = _internal_number_creator(
 
 def check_strapping_pin(conf, strapping_pin_list: set[int], logger: Logger):
     num = conf[CONF_NUMBER]
+    num_count = False
     if num in strapping_pin_list and not conf.get(CONF_IGNORE_STRAPPING_WARNING):
+        num_count = True
         logger.warning(
-            f"GPIO{num} is a strapping PIN and should only be used for I/O with care.\n"
-            "Attaching external pullup/down resistors to strapping pins can cause unexpected failures.\n"
+            f"GPIO{num} is a strapping PIN and should only be used for I/O with care."
+        )
+    # Print guidance note only once even if multiple strapping pins are used
+    if num_count == True:
+        logger.warning(
+            f"Attaching external pullup/down resistors to strapping pins can cause unexpected failures.\n"
             "See https://esphome.io/guides/faq.html#why-am-i-getting-a-warning-about-strapping-pins",
         )
     # mitigate undisciplined use of strapping:
