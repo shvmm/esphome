@@ -37,7 +37,7 @@ class ESP32Can : public canbus::Canbus {
   uint32_t tx_enqueue_timeout_ms_{100};
   optional<uint32_t> tx_queue_len_{};
   optional<uint32_t> rx_queue_len_{};
-  twai_handle_t twai_handle_{nullptr};
+  twai_node_handle_t twai_handle_{nullptr};
 };
 
 }  // namespace esphome::esp32_can
