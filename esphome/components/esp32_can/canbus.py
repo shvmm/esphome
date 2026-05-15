@@ -44,7 +44,8 @@ CAN_MODES = {
 
 # Currently the driver only supports a subset of the bit rates defined in canbus
 # The supported bit rates differ between ESP32 variants.
-# See ESP-IDF Programming Guide --> API Reference --> Two-Wire Automotive Interface (TWAI)
+# See ESP-IDF Programming Guide --> API Reference --> Peripherals API --> Two-Wire Automotive Interface (TWAI)
+# https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/twai.html
 
 CAN_SPEEDS_ESP32 = {
     "25KBPS": CanSpeed.CAN_25KBPS,
