@@ -8,10 +8,14 @@ namespace esphome::esp32_can {
 
 static const char *const TAG = "esp32_can";
 
-static bool get_bitrate(canbus::CanSpeed bitrate, twai_timing_config_t *t_config) {
+static bool get_bitrate(canbus::CanSpeed bitrate, twai_timing_basic_config_t *t_config) {
   switch (bitrate) {
-#if defined(USE_ESP32_VARIANT_ESP32C3) || defined(USE_ESP32_VARIANT_ESP32C6) || defined(USE_ESP32_VARIANT_ESP32C61) || \
-    defined(USE_ESP32_VARIANT_ESP32H2) || defined(USE_ESP32_VARIANT_ESP32P4) || defined(USE_ESP32_VARIANT_ESP32S2) || \
+#if defined(USE_ESP32_VARIANT_ESP32C3) || \
+    defined(USE_ESP32_VARIANT_ESP32C6) || \
+    defined(USE_ESP32_VARIANT_ESP32C61) || \
+    defined(USE_ESP32_VARIANT_ESP32H2) || \
+    defined(USE_ESP32_VARIANT_ESP32P4) || \
+    defined(USE_ESP32_VARIANT_ESP32S2) || \
     defined(USE_ESP32_VARIANT_ESP32S3)
     case canbus::CAN_1KBPS:
       *t_config = TWAI_TIMING_CONFIG_1KBITS();
