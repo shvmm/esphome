@@ -122,9 +122,7 @@ def get_default_tx_enqueue_timeout(bit_rate):
 
 
 async def to_code(config):
-    # Legacy driver component provides driver/twai.h header
-    include_builtin_idf_component("driver")
-    # Also enable esp_driver_twai for future migration to new API
+    # Modern ESP-IDF driver component
     include_builtin_idf_component("esp_driver_twai")
     var = cg.new_Pvariable(config[CONF_ID])
     await canbus.register_canbus(var, config)

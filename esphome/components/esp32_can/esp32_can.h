@@ -5,7 +5,7 @@
 #include "esphome/components/canbus/canbus.h"
 #include "esphome/core/component.h"
 
-#include <driver/twai.h>
+#include <esp_twai.h>
 
 namespace esphome::esp32_can {
 
@@ -22,7 +22,7 @@ class ESP32Can : public canbus::Canbus {
   void set_tx_queue_len(uint32_t tx_queue_len) { this->tx_queue_len_ = tx_queue_len; }
   void set_rx_queue_len(uint32_t rx_queue_len) { this->rx_queue_len_ = rx_queue_len; }
   void set_tx_enqueue_timeout_ms(uint32_t tx_enqueue_timeout_ms) {
-    this->tx_enqueue_timeout_ticks_ = pdMS_TO_TICKS(tx_enqueue_timeout_ms);
+    this->tx_enqueue_timeout_ms_ = tx_enqueue_timeout_ms;
   }
   ESP32Can(){};
 
@@ -34,7 +34,7 @@ class ESP32Can : public canbus::Canbus {
   int rx_{-1};
   int tx_{-1};
   CanMode mode_{CAN_MODE_NORMAL};
-  TickType_t tx_enqueue_timeout_ticks_{};
+  uint32_t tx_enqueue_timeout_ms_{100};
   optional<uint32_t> tx_queue_len_{};
   optional<uint32_t> rx_queue_len_{};
   twai_handle_t twai_handle_{nullptr};
